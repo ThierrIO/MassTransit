@@ -261,7 +261,7 @@ Response response = await client.GetResponse<OrderStatusResult, OrderNotFound>(n
 // Using a regular switch statement
 switch (response)
 {
-    case (_, OrderStatusResult a) responseA:
+    case (OrderStatusResult a, _) responseA:
         // order found
         break;
     case (_, OrderNotFound b) responseB:
@@ -272,7 +272,7 @@ switch (response)
 // Or using a switch expression
 var accepted = response switch
 {
-    (_, OrderStatusResult a) => true,
+    (OrderStatusResult a, _) => true,
     (_, OrderNotFound b) => false,
     _ => throw new InvalidOperationException()
 };
